@@ -4,56 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public Rigidbody2D rb;
-    private Vector2 moveDirection;
-    private Camera mainCamera;
-    public GameObject bulletPrefab;
-    public Transform bulletSpawnPoint;
-    public float bulletSpeed;
-    public float fireRate = 0.5f; // tempo mínimo entre os tiros
-    private float lastFireTime = 0f;
+    public float speed = 5.0f; // velocidade do jogador
 
+    private Rigidbody2D rb; // referência ao componente Rigidbody2D do jogador
 
     void Start()
     {
-        mainCamera = Camera.main;
+        rb = GetComponent<Rigidbody2D>(); // obter referência ao componente Rigidbody2D do jogador
     }
-
-    void Update()
-    {
-        ProcessInputs();
-    }
-
     void FixedUpdate()
     {
-        Move();
-    }
+        // obter a entrada de movimento do jogador
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
 
-    void ProcessInputs()
-    {
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        moveDirection = new Vector2(moveX, moveY).normalized;
-
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 10;
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(mousePos);
-        Vector2 aimDirection = (mouseWorldPosition - transform.position).normalized;
-
-        if (Input.GetMouseButton(0) && Time.time - lastFireTime >= fireRate)
-        {
-            GameObject bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, Quaternion.identity);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.velocity = aimDirection * bulletSpeed;
-
-            lastFireTime = Time.time; // atualiza o tempo do último tiro
-
-        }
-    }
-
-    void Move()
-    {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+        // definir a velocidade do jogador com base na entrada de movimento
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        rb.velocity = movement * speed;
     }
 }
