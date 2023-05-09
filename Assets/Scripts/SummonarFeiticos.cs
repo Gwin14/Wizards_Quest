@@ -11,9 +11,12 @@ public class SummonarFeiticos : MonoBehaviour
     public ParticleSystem hitParticles; // sistema de partículas para quando a bala acertar um objeto
     public int idBala = 0;
     public GameObject playerObject;
-
-
     private float nextFireTime; // tempo para o próximo disparo
+
+    public float dashSpeed = 10f;
+    public float dashCooldown = 1f;
+    private float lastDashTime = -Mathf.Infinity;
+
 
     private void Start()
     {
@@ -21,6 +24,7 @@ public class SummonarFeiticos : MonoBehaviour
 
     void Update()
     {
+
         FazerFeitico();
         // verificar se o botão esquerdo do mouse foi pressionado e se o tempo entre os disparos já passou
         if (Input.GetButton("Fire1") && Time.time > nextFireTime)
@@ -29,16 +33,21 @@ public class SummonarFeiticos : MonoBehaviour
             switch (idBala)
             {
                 case 0:
-                        FeiticoBala();
+                    FeiticoBala();
                     break;
 
-                    case 1100:
+                case 1100:
                     FeiticoBolaGrande();
                     idBala = 0;
                     break;
 
-                    case 11100:
+                case 11100:
                     FeiticoVelocidade();
+                    idBala = 0;
+                    break;
+
+                case 20000:
+                    FeiticoDash();
                     idBala = 0;
                     break;
 
@@ -47,7 +56,7 @@ public class SummonarFeiticos : MonoBehaviour
                     break;
             }
 
-            
+
         }
     }
 
@@ -88,7 +97,7 @@ public class SummonarFeiticos : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * 2;
 
         // destruir a bala depois de segundos
-        Destroy(bullet, 40.0f);
+        Destroy(bullet, 100.0f);
     }
 
     void FeiticoVelocidade()
@@ -100,6 +109,18 @@ public class SummonarFeiticos : MonoBehaviour
     void VoltarVelocidade()
     {
         playerObject.GetComponent<PlayerController>().speed = 5.0f;
+    }
+
+    void FeiticoDash()
+    {
+        if (Input.GetMouseButtonDown(0) && Time.time > lastDashTime + dashCooldown)
+        {
+            Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = clickPosition - (Vector2)transform.position;
+            direction.Normalize();
+            GetComponent<Rigidbody2D>().AddForce(direction * dashSpeed, ForceMode2D.Impulse);
+            lastDashTime = Time.time;
+        }
     }
 
     private void FazerFeitico()
