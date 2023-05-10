@@ -21,7 +21,7 @@ public class ProjectileEnemy : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         // verifica se o projétil colidiu com um inimigo
         if (collision.gameObject.tag == "Player")

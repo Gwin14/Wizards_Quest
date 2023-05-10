@@ -9,15 +9,15 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 movementDirection; // direção do movimento do inimigo
 
-    public float vida = 10;
+    public float vida = 15;
 
-    public GameObject bulletPrefab; // Prefab da bala que o inimigo atira
-    public float shootingInterval = 2f; // Intervalo entre os tiros
-    public float bulletSpeed = 10f; // Velocidade da bala
-    public Transform target; // Transform do jogador
+    public GameObject bulletPrefab;
+    public float bulletSpeed = 10f;
+    public float minTimeBetweenShots = 2f;
+    public float maxTimeBetweenShots = 5f;
 
-    private float shootingTimer; // Timer para controlar o intervalo entre os tiros
-
+    private Transform playerTransform;
+    private float timeUntilNextShot;
 
 
     // define a direção de movimento aleatória do inimigo
@@ -63,7 +63,10 @@ public class EnemyController : MonoBehaviour
         SetRandomMovementDirection();
         StartCoroutine(RandomizeMovementDirection());
 
-        vida = 10;
+        vida = 15;
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        timeUntilNextShot = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
     }
 
     public void Dano(float dano)
@@ -83,30 +86,21 @@ public class EnemyController : MonoBehaviour
         Move();
         CheckCollision();
 
-        if (target == null)
-        {
-            return;
-        }
+        timeUntilNextShot -= Time.deltaTime;
 
-        shootingTimer -= Time.deltaTime;
-
-        if (shootingTimer <= 0f)
+        if (timeUntilNextShot <= 0f)
         {
             Shoot();
-            shootingTimer = shootingInterval;
+            timeUntilNextShot = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
-
-
     }
 
 
     void Shoot()
     {
-        Vector2 shootingDirection = (target.position - transform.position).normalized;
-
+        Vector3 direction = (playerTransform.position - transform.position).normalized;
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-        Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
-        bulletRigidbody.velocity = shootingDirection * bulletSpeed;
+        bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
     }
 
 }

@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public GameObject bulletexplosion;
     public Transform bulletExplosionSpawnPoint;
     public ParticleSystem hitParticles; // sistema de partículas para quando a bala acertar um objeto
+    public float dano;
 
 
 
@@ -21,13 +22,6 @@ public class Projectile : MonoBehaviour
 
     }
 
-
-    //void OnBecameInvisible()
-    //{
-    //    // destrói o objeto quando ele sai da tela
-    //    Destroy(gameObject);
-    //}
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         // verifica se o projétil colidiu com um inimigo
@@ -35,7 +29,7 @@ public class Projectile : MonoBehaviour
         {
             GameObject bullet = Instantiate(bulletexplosion, bulletExplosionSpawnPoint.position, Quaternion.identity);
 
-            collision.gameObject.GetComponent<EnemyController>().Dano(5);
+            collision.gameObject.GetComponent<EnemyController>().Dano(dano);
 
             Destroy(gameObject);
 

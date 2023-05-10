@@ -341,11 +341,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  vida: -150
+  vida: 30
   bulletPrefab: {fileID: 457335707027620315, guid: 0821a6a7ea5ab574cbbd38d8628e4ff7, type: 3}
-  shootingInterval: 2
   bulletSpeed: 10
-  target: {fileID: 4023183274563709074, guid: 9b28ddec371a7074c811412960ecf3c2, type: 3}
+  minTimeBetweenShots: 2
+  maxTimeBetweenShots: 5
 --- !u!1 &8111864898066530486
 GameObject:
   m_ObjectHideFlags: 0
