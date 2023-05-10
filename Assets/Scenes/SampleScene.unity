@@ -296,7 +296,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 0000000051f2276d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -904,7 +904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 889985080359055516, guid: 69be0b5e2518e0b4fa3388eef1d9af40, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.07
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 889985080359055516, guid: 69be0b5e2518e0b4fa3388eef1d9af40, type: 3}
       propertyPath: m_LocalPosition.y
@@ -945,6 +945,10 @@ PrefabInstance:
     - target: {fileID: 2970145885345180237, guid: 69be0b5e2518e0b4fa3388eef1d9af40, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970145885345180237, guid: 69be0b5e2518e0b4fa3388eef1d9af40, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -8,14 +8,10 @@ public class SummonarFeiticos : MonoBehaviour
     public GameObject bigBulletPrefab; // prefab da bala
     public float fireRate = 0.5f; // tempo entre os disparos
     public Transform firePoint; // ponto de origem da bala
-    public ParticleSystem hitParticles; // sistema de partículas para quando a bala acertar um objeto
     public int idBala = 0;
     public GameObject playerObject;
     private float nextFireTime; // tempo para o próximo disparo
 
-    public float dashSpeed = 10f;
-    public float dashCooldown = 1f;
-    private float lastDashTime = -Mathf.Infinity;
 
 
     private void Start()
@@ -106,21 +102,14 @@ public class SummonarFeiticos : MonoBehaviour
         Invoke("VoltarVelocidade", 5.0f);
     }
 
-    void VoltarVelocidade()
-    {
-        playerObject.GetComponent<PlayerController>().speed = 5.0f;
-    }
+    //void VoltarVelocidade()
+    //{
+    //    playerObject.GetComponent<PlayerController>().speed = 5.0f;
+    //}
 
     void FeiticoDash()
     {
-        if (Input.GetMouseButtonDown(0) && Time.time > lastDashTime + dashCooldown)
-        {
-            Vector2 clickPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = clickPosition - (Vector2)transform.position;
-            direction.Normalize();
-            GetComponent<Rigidbody2D>().AddForce(direction * dashSpeed, ForceMode2D.Impulse);
-            lastDashTime = Time.time;
-        }
+        
     }
 
     private void FazerFeitico()
@@ -150,8 +139,7 @@ public class SummonarFeiticos : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // reproduzir as partículas de colisão
-            hitParticles.transform.position = collision.contacts[0].point;
-            hitParticles.Play();
+            
         }
     }
 }

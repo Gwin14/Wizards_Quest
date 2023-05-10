@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletexplosion: {fileID: 6966037666937849378, guid: 88368ecb46a4b4342a675701ab519b64, type: 3}
   bulletExplosionSpawnPoint: {fileID: 7088105762656499864}
+  hitParticles: {fileID: 4484376929794516550, guid: 88368ecb46a4b4342a675701ab519b64, type: 3}
 --- !u!61 &-3706960516444199299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -273,7 +274,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

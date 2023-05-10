@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Projectile : MonoBehaviour
+public class ProjectileEnemy : MonoBehaviour
 {
 
     public GameObject bulletexplosion;
@@ -21,21 +21,14 @@ public class Projectile : MonoBehaviour
 
     }
 
-
-    //void OnBecameInvisible()
-    //{
-    //    // destrói o objeto quando ele sai da tela
-    //    Destroy(gameObject);
-    //}
-
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         // verifica se o projétil colidiu com um inimigo
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Player")
         {
             GameObject bullet = Instantiate(bulletexplosion, bulletExplosionSpawnPoint.position, Quaternion.identity);
 
-            collision.gameObject.GetComponent<EnemyController>().Dano(5);
+            collision.gameObject.GetComponent<PlayerController>().Dano(5);
 
             Destroy(gameObject);
 
