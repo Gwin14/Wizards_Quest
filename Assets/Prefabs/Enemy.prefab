@@ -197,8 +197,8 @@ Transform:
   m_GameObject: {fileID: 2970145885345180237}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.2, y: -0.02, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5508456619298453581}
   m_Father: {fileID: 0}
@@ -327,7 +327,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8879064632502897397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +343,7 @@ MonoBehaviour:
   speed: 1
   vida: 30
   bulletPrefab: {fileID: 457335707027620315, guid: 0821a6a7ea5ab574cbbd38d8628e4ff7, type: 3}
-  bulletSpeed: 10
+  bulletSpeed: 20
   minTimeBetweenShots: 2
   maxTimeBetweenShots: 5
 --- !u!1 &8111864898066530486

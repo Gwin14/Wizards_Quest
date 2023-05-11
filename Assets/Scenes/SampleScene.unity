@@ -153,14 +153,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e32934a6885734a9980c7556934e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomSize: {x: 10, y: 10}
-  roomMap: {fileID: 0}
-  colliderMap: {fileID: 0}
-  roomFloorTile: {fileID: 0}
-  pathFloorTile: {fileID: 0}
-  OnFinishedRoomGeneration:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &18356580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,7 +1073,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4189261372928177156, guid: 9b28ddec371a7074c811412960ecf3c2, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b28ddec371a7074c811412960ecf3c2, type: 3}

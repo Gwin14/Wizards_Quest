@@ -37,5 +37,16 @@ public class Projectile : MonoBehaviour
             hitParticles.Play();
 
         }
+
+        if (collision.gameObject.tag == "Parede")
+        {
+            GameObject bullet = Instantiate(bulletexplosion, bulletExplosionSpawnPoint.position, Quaternion.identity);
+
+            Destroy(gameObject);
+
+            hitParticles.transform.position = transform.position;
+            hitParticles.Play();
+
+        }
     }
 }

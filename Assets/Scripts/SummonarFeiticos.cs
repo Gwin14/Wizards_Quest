@@ -6,11 +6,14 @@ public class SummonarFeiticos : MonoBehaviour
 {
     public GameObject bulletPrefab; // prefab da bala
     public GameObject bigBulletPrefab; // prefab da bala
+    public GameObject shotgunBulletPrefab; // prefab da bala
     public float fireRate = 0.5f; // tempo entre os disparos
     public Transform firePoint; // ponto de origem da bala
     public int idBala = 0;
     public GameObject playerObject;
     private float nextFireTime; // tempo para o próximo disparo
+    public int numProjectiles = 5;
+    public float spreadAngle = 30f;
 
 
 
@@ -42,8 +45,8 @@ public class SummonarFeiticos : MonoBehaviour
                     idBala = 0;
                     break;
 
-                case 20000:
-                    FeiticoDash();
+                case 200:
+                    FeiticoEspingarda();
                     idBala = 0;
                     break;
 
@@ -98,19 +101,31 @@ public class SummonarFeiticos : MonoBehaviour
 
     void FeiticoVelocidade()
     {
+        nextFireTime = Time.time + fireRate;
         playerObject.GetComponent<PlayerController>().speed = 10.0f;
-        Invoke("VoltarVelocidade", 5.0f);
+        //Invoke("VoltarVelocidade", 5.0f);
+        StartCoroutine(VoltarVelocidade());
     }
-
-    //void VoltarVelocidade()
-    //{
-    //    playerObject.GetComponent<PlayerController>().speed = 5.0f;
-    //}
-
-    void FeiticoDash()
+    
+    void FeiticoEspingarda()
     {
-        
+        nextFireTime = Time.time + fireRate;
+        for (int i = 0; i < numProjectiles; i++)
+        {
+            Vector2 direction = Quaternion.Euler(0, 0, Random.Range(-spreadAngle, spreadAngle)) * (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+            GameObject projectile = Instantiate(shotgunBulletPrefab, firePoint.position, Quaternion.identity);
+            projectile.GetComponent<Rigidbody2D>().velocity = direction * 2;
+        }
     }
+
+    IEnumerator VoltarVelocidade()
+    {
+        yield return new WaitForSeconds(5);
+        print("gay");
+        playerObject.GetComponent<PlayerController>().speed = 5.0f;
+    }
+
+    
 
     private void FazerFeitico()
     {
@@ -139,7 +154,7 @@ public class SummonarFeiticos : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // reproduzir as partículas de colisão
-            
+
         }
     }
 }

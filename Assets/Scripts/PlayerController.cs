@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float dashDuration = 0.5f;
     public float dashCooldown = 1f;
 
-    public float vida = 10;
+    public float vida = 100;
 
     private bool isDashing = false;
     private Vector2 dashDirection;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); // obter referência ao componente Rigidbody2D do jogador
 
-        vida = 10;
+        vida = 100;
     }
     void FixedUpdate()
     {

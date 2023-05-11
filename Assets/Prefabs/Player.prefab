@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 2633759976081320163}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.11, y: 0.36, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7439366159517420444}
   m_Father: {fileID: 0}
@@ -192,10 +192,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 457335707027620315, guid: 6f5fbf7ac4d04f349b4b9a1efb9836e4, type: 3}
   bigBulletPrefab: {fileID: 457335707027620315, guid: bdfcb91d6cf1a8341a57b2dd201e42ad, type: 3}
+  shotgunBulletPrefab: {fileID: 457335707027620315, guid: 04db1e3d27f4a9f47b88d9e1d11b0e44, type: 3}
   fireRate: 0.5
   firePoint: {fileID: 4023183274563709074}
   idBala: 0
   playerObject: {fileID: 2633759976081320163}
+  numProjectiles: 5
+  spreadAngle: 30
 --- !u!1 &4189261372928177156
 GameObject:
   m_ObjectHideFlags: 0

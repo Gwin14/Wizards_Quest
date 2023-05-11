@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
+using System.Collections;
 
 [System.Serializable]
 public class PrefabData
@@ -14,8 +15,11 @@ public class TilemapSpawner : MonoBehaviour
     public Tilemap tilemap;
     public List<PrefabData> prefabs = new List<PrefabData>();
 
-    void Start()
+    IEnumerator Start()
     {
+
+        yield return new WaitForSeconds(2); ;
+
         foreach (var prefabData in prefabs)
         {
             int count = 0;
