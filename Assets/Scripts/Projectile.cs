@@ -48,5 +48,17 @@ public class Projectile : MonoBehaviour
             hitParticles.Play();
 
         }
+
+        if (collision.gameObject.tag == "DestructableObjects")
+        {
+            GameObject bullet = Instantiate(bulletexplosion, bulletExplosionSpawnPoint.position, Quaternion.identity);
+
+            collision.gameObject.GetComponent<DestructableObjects>().Dano(dano);
+
+            //Destroy(gameObject);
+
+            hitParticles.transform.position = transform.position;
+            hitParticles.Play();
+        }
     }
 }

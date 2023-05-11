@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - Parede
+  - DestructableObjects
   layers:
   - Default
   - TransparentFX
@@ -40,6 +41,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 815533801
+    locked: 0
+  - name: Grid
+    uniqueID: 3671103771
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
