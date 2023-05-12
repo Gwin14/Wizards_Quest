@@ -17,8 +17,21 @@ public class PlayerController : MonoBehaviour
     private bool isDashing = false;
     private Vector2 dashDirection;
 
+    public float destroyRadius = 10f;
+    public string enemyTag = "Enemy";
+
     void Start()
     {
+
+        // Encontrar todos os objetos com a tag "Enemy" dentro do raio especificado
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, destroyRadius, LayerMask.GetMask(enemyTag));
+
+        // Destruir todos os inimigos encontrados
+        foreach (Collider2D enemy in enemies)
+        {
+            Destroy(enemy.gameObject);
+        }
+
         rb = GetComponent<Rigidbody2D>(); // obter referência ao componente Rigidbody2D do jogador
 
         vida = 100;
@@ -72,4 +85,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(dashCooldown);
     }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        // Desenhar um Gizmo para visualizar o raio de destruição
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, destroyRadius);
+    }
 }

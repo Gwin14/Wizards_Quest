@@ -178,6 +178,8 @@ MonoBehaviour:
   dashDuration: 0.1
   dashCooldown: 5
   vida: 10
+  destroyRadius: 15
+  enemyTag: Enemy
 --- !u!114 &932097951651089275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,6 +213,7 @@ GameObject:
   - component: {fileID: 8025922567165624817}
   - component: {fileID: 3640970719783218099}
   - component: {fileID: 6320338978535355550}
+  - component: {fileID: 2490361237608135839}
   m_Layer: 0
   m_Name: camera
   m_TagString: MainCamera
@@ -335,3 +338,15 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &2490361237608135839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4189261372928177156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e26647033f299c48acedbb70ccc348c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

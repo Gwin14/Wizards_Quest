@@ -20,6 +20,8 @@ public class EnemyController : MonoBehaviour
     private float timeUntilNextShot;
 
 
+
+
     // define a direção de movimento aleatória do inimigo
     private void SetRandomMovementDirection()
     {
