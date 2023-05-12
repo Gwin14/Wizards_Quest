@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Video;
 
 public class EnemyController : MonoBehaviour
 {
     public float speed = 3f; // velocidade de movimento do inimigo
+    public float attackDistance = 5f; // distância mínima para atacar o jogador
 
     private Vector2 movementDirection; // direção do movimento do inimigo
 
@@ -18,9 +18,6 @@ public class EnemyController : MonoBehaviour
 
     private Transform playerTransform;
     private float timeUntilNextShot;
-
-
-
 
     // define a direção de movimento aleatória do inimigo
     private void SetRandomMovementDirection()
@@ -48,7 +45,6 @@ public class EnemyController : MonoBehaviour
             SetRandomMovementDirection();
         }
     }
-
 
     // chama o método para definir nova direção de movimento aleatória periodicamente
     private IEnumerator RandomizeMovementDirection()
@@ -90,13 +86,13 @@ public class EnemyController : MonoBehaviour
 
         timeUntilNextShot -= Time.deltaTime;
 
-        if (timeUntilNextShot <= 0f)
+        // Verifica se o jogador está dentro da distância de ataque antes de atirar
+        if (timeUntilNextShot <= 0f && Vector3.Distance(transform.position, playerTransform.position) <= attackDistance)
         {
             Shoot();
             timeUntilNextShot = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
     }
-
 
     void Shoot()
     {
@@ -105,4 +101,11 @@ public class EnemyController : MonoBehaviour
         bullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
     }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        // Desenha uma esfera ao redor do inimigo para indicar a área de ataque
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
+    }
 }

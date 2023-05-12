@@ -341,6 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  attackDistance: 8
   vida: 30
   bulletPrefab: {fileID: 457335707027620315, guid: 0821a6a7ea5ab574cbbd38d8628e4ff7, type: 3}
   bulletSpeed: 20
