@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using static System.TimeZoneInfo;
 
 [System.Serializable]
 public class PrefabData
@@ -15,10 +17,11 @@ public class TilemapSpawner : MonoBehaviour
     public Tilemap tilemap;
     public List<PrefabData> prefabs = new List<PrefabData>();
 
+
     IEnumerator Start()
     {
 
-        yield return new WaitForSeconds(2); ;
+        yield return new WaitForSeconds(0.1f); ;
 
         foreach (var prefabData in prefabs)
         {
