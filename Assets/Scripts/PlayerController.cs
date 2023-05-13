@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    private Animator anim;
+    private SpriteRenderer spriteRenderer;
+
+
     public float speed = 5.0f; // velocidade do jogador
 
     private Rigidbody2D rb; // referência ao componente Rigidbody2D do jogador
@@ -23,6 +28,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        anim = GetComponent<Animator>();
+
         // Encontrar todos os objetos com a tag "Enemy" dentro do raio especificado
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, destroyRadius, LayerMask.GetMask(enemyTag));
 
@@ -35,16 +44,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>(); // obter referência ao componente Rigidbody2D do jogador
 
         vida = 100;
-    }
-    void FixedUpdate()
-    {
-        // obter a entrada de movimento do jogador
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        // definir a velocidade do jogador com base na entrada de movimento
-        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
-        rb.velocity = movement * speed;
     }
 
     public void Dano(float dano)
@@ -65,6 +64,38 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
+
+        // obter a entrada de movimento do jogador
+        float moveHorizontal = Input.GetAxis("Horizontal");
+        float moveVertical = Input.GetAxis("Vertical");
+
+        // definir a velocidade do jogador com base na entrada de movimento
+        Vector2 movement = new Vector2(moveHorizontal, moveVertical);
+        rb.velocity = movement * speed;
+
+        if (movement.magnitude > 0.1f)
+        {
+            anim.SetBool("IsRunning", true);
+        }
+        else
+        {
+            anim.SetBool("IsRunning", false);
+        }
+
+        if (moveHorizontal < 0)
+        {
+            spriteRenderer.flipX = true;
+        }
+        else if (moveHorizontal > 0)
+        {
+            spriteRenderer.flipX = false;
+        }
+
+        //transform.position += new Vector3(moveHorizontal, 0, 0) * speed * Time.deltaTime;
+
+        anim.SetFloat("Speed", Mathf.Abs(moveHorizontal));
+
+
     }
 
     private IEnumerator Dash()
