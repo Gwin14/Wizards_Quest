@@ -57,6 +57,7 @@ public class SummonarFeiticos : MonoBehaviour
 
 
         }
+
     }
 
     void FeiticoBala()
@@ -73,10 +74,12 @@ public class SummonarFeiticos : MonoBehaviour
 
         // definir a velocidade da bala e sua direção em relação à posição do mouse
         Vector2 bulletDirection = (mousePosition - firePoint.position).normalized;
-        bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * 20;
+        bullet.GetComponent<Rigidbody2D>().velocity = bulletDirection * 10;
 
         // destruir a bala depois de segundos
         Destroy(bullet, 2.0f);
+
+
     }
 
     void FeiticoBolaGrande()

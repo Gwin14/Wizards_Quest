@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+
+    private SpriteRenderer spriteRenderer;
+
     public float speed = 3f; // velocidade de movimento do inimigo
     public float attackDistance = 5f; // distância mínima para atacar o jogador
 
@@ -58,6 +61,8 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         SetRandomMovementDirection();
         StartCoroutine(RandomizeMovementDirection());
 
@@ -92,6 +97,16 @@ public class EnemyController : MonoBehaviour
             Shoot();
             timeUntilNextShot = Random.Range(minTimeBetweenShots, maxTimeBetweenShots);
         }
+
+        if (playerTransform.position.x < transform.position.x)
+        {
+            spriteRenderer.flipX = true; // Inverte a escala horizontalmente
+        }
+        else
+        {
+            spriteRenderer.flipX = false; // Mantém a escala original
+        }
+
     }
 
     void Shoot()
